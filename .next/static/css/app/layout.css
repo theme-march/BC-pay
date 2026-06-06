@@ -833,6 +833,11 @@ textarea {
   font-size: 30px;
   font-weight: 900;
 }
+@media (max-width: 992px) {
+  .transfer-payment-header h2 {
+    max-width: 150px;
+  }
+}
 
 .transfer-payment-header span {
   color: #64748b;
@@ -909,7 +914,6 @@ textarea {
 
 .payment-card-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   gap: 16px;
 }
