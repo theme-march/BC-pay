@@ -900,8 +900,8 @@ textarea {
 }
 
 .payment-card-grid {
-  display: grid;
-  grid-gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
 
@@ -912,6 +912,7 @@ textarea {
   background: #fff;
   border-radius: 18px;
   padding: 13px 16px;
+  flex: 1 1 auto;
 }
 
 .payment-inline-field-full {
@@ -1226,8 +1227,7 @@ textarea {
     max-height: none;
     overflow: visible;
   }
-  .transfer-panel-actions,
-  .payment-card-grid {
+  .transfer-panel-actions {
     grid-template-columns: 1fr;
     flex-direction: column;
   }

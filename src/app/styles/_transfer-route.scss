@@ -351,8 +351,8 @@
 }
 
 .payment-card-grid {
-  display: grid;
-  // grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
 
@@ -363,10 +363,12 @@
   background: #fff;
   border-radius: 18px;
   padding: 13px 16px;
+  flex: 1 1 auto;
 }
 
 .payment-inline-field-full {
   grid-column: 1 / -1;
+  
 }
 
 .payment-inline-field span {

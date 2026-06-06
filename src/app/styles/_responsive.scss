@@ -27,8 +27,7 @@
     overflow: visible;
   }
 
-  .transfer-panel-actions,
-  .payment-card-grid {
+  .transfer-panel-actions {
     grid-template-columns: 1fr;
     flex-direction: column;
   }
