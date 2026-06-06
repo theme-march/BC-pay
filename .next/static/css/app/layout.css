@@ -677,6 +677,11 @@ textarea {
   flex-direction: column;
   gap: 24px;
 }
+@media (max-width: 992px) {
+  .transfer-route-right {
+    padding: 15px;
+  }
+}
 
 .transfer-route-right-scroll {
   max-height: calc(100vh - 112px);
@@ -698,6 +703,11 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 26px;
   padding: 26px;
+}
+@media (max-width: 992px) {
+  .form-block {
+    padding: 15px;
+  }
 }
 
 .form-heading {
@@ -749,7 +759,7 @@ textarea {
 }
 @media (max-width: 992px) {
   .transfer-white-panel {
-    padding: 20px;
+    padding: 15px;
   }
 }
 
