@@ -674,6 +674,11 @@ textarea {
   max-width: 750px;
   width: 100%;
 }
+@media (max-width: 992px) {
+  .transfer-route-right-scroll {
+    max-width: 100%;
+  }
+}
 
 .transfer-route-side-actions {
   display: flex;
@@ -910,6 +915,7 @@ textarea {
   flex-direction: column;
   gap: 7px;
   background: #fff;
+  width: 100%;
   border-radius: 18px;
   padding: 13px 16px;
   flex: 1 1 auto;
