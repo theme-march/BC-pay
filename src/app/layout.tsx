@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "MultiTransfer",

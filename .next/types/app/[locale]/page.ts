@@ -1,4 +1,4 @@
-// File: C:\Users\Akash\Desktop\multitransferbd\src\app\[locale]\page.tsx
+// File: /Users/akash/Desktop/BC-pay/src/app/[locale]/page.tsx
 import * as entry from '../../../../src/app/[locale]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

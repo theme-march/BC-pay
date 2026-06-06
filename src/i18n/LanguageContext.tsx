@@ -1,15 +1,46 @@
 "use client";
 
-import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 export type LanguageCode = "en" | "bg" | "in" | "sl";
 
 export const languageOptions = [
-  { code: "en" as const, country: "English", label: "English", short: "EN", flag: "uk" },
-  { code: "bg" as const, country: "Bangladesh", label: "বাংলা", short: "BG", flag: "bangladesh" },
-  { code: "in" as const, country: "India", label: "हिन्दी", short: "IN", flag: "india" },
-  { code: "sl" as const, country: "Sri Lanka", label: "සිංහල", short: "SL", flag: "sri-lanka" }
+  {
+    code: "en" as const,
+    country: "English",
+    label: "English",
+    short: "EN",
+    flag: "uk",
+  },
+  {
+    code: "bg" as const,
+    country: "Bangladesh",
+    label: "বাংলা",
+    short: "BG",
+    flag: "bangladesh",
+  },
+  {
+    code: "in" as const,
+    country: "India",
+    label: "हिन्दी",
+    short: "IN",
+    flag: "india",
+  },
+  {
+    code: "sl" as const,
+    country: "Sri Lanka",
+    label: "සිංහල",
+    short: "SL",
+    flag: "sri-lanka",
+  },
 ];
 
 const translations: Record<LanguageCode, Record<string, string>> = {
@@ -26,7 +57,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     sendCurrency: "Send currency",
     swapCurrencies: "Swap currencies",
     startTransfer: "Start transfer",
-    license: "MultitransferBD — licensed payment service",
+    license: "Multitransfer — licensed payment service",
     countryModalTitle: "Destination country",
     methodModalTitle: "Mode of transfer",
     chooseDestination: "Choose where to send",
@@ -53,7 +84,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     back: "Back",
     confirmTransfer: "Confirm transfer",
     readyTitle: "Transfer request is ready",
-    readyText: "The demo transfer has been created. In a real service, the user would continue to payment and SMS confirmation.",
+    readyText:
+      "The demo transfer has been created. In a real service, the user would continue to payment and SMS confirmation.",
     done: "Done",
     recipientCard: "Recipient card / account",
     senderPhone: "Sender phone",
@@ -63,7 +95,77 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     senderFirstName: "Sender first name",
     confirmData: "I confirm the recipient and sender details are correct",
     formError: "Fill all required fields on step 2 and confirm the data.",
-    helperInfo: "Check the recipient bank. It helps choose the correct transfer method."
+    helperInfo:
+      "Check the recipient bank. It helps choose the correct transfer method.",
+    transferToCountry: "Transfer to {country}",
+    dataEntry: "Data entry",
+    backHome: "Back",
+    receiver: "Receiver",
+    sender: "Sender",
+    firstName: "First name",
+    lastName: "Last name",
+    middleName: "Middle name",
+    phoneNumber: "Phone number",
+    russianPassport: "Russian passport",
+    nationalPassport: "National passport",
+    countryOfDocumentIssue: "Country of document issue",
+    passportSeries: "Passport series",
+    passportNumber: "Passport number",
+    divisionCode: "Division code",
+    issuingAuthority: "Issuing authority",
+    dateOfIssue: "Date of issue",
+    countryOfResidence: "Country of residence",
+    citizenship: "Citizenship",
+    countryOfBirth: "Country of birth",
+    placeOfBirth: "Place of birth",
+    countryOfRegistration: "Country of registration",
+    placeOfRegistration: "Place of registration",
+    gender: "Gender",
+    male: "Male",
+    female: "Female",
+    dateOfBirth: "Date of birth",
+    enterCountryOfResidence: "Enter your country of residence",
+    enterCitizenship: "Enter your citizenship",
+    enterCountryOfBirth: "Enter your country of birth",
+    enterPlaceOfBirth: "Enter your place of birth exactly as in the document",
+    enterCountryOfRegistration: "Enter your country of registration",
+    enterPlaceOfRegistration:
+      "Enter your place of registration exactly as in the document",
+    enterIssuingAuthority: "Enter exactly as shown in the passport",
+    enterPhoneWithCode: "Enter the country code and phone number",
+    personalDataConsent:
+      "I agree to the processing of personal data in accordance with the Consent and confirm the accuracy of the provided data in accordance with Clause 1.5 and Clause 5.2.1 of the Terms",
+    consent: "Consent",
+    clause15: "Clause 1.5",
+    clause521: "Clause 5.2.1",
+    terms: "Terms",
+    continue: "Continue",
+    continueToConfirm: "Continue to confirm",
+    confirmDetails: "Confirm details",
+    paymentDetails: "Payment details",
+    stepOf: "Step {current} of {total}",
+    confirmNote:
+      "By proceeding, you confirm that the sender and recipient data are accurate and ready for the payment step.",
+    editData: "Edit data",
+    amountToReceive: "Amount to receive",
+    fxRate: "FX rate",
+    totalToTransfer: "Total to transfer",
+    transferMethodLabel: "Transfer method",
+    recipientFirstNameLabel: "Recipient first name",
+    recipientLastNameLabel: "Recipient last name",
+    recipientPhoneLabel: "Recipient phone",
+    senderFirstNameLabel: "Sender first name",
+    senderLastNameLabel: "Sender last name",
+    senderPhoneLabel: "Sender phone",
+    documentType: "Document type",
+    documentCountry: "Document country",
+    scanSbpQr: "Scan the SBP QR to complete payment",
+    paymentProtected: "Payment is protected by SSL protocol",
+    byCard: "By card",
+    cardNumber: "Card number",
+    send: "Send",
+    paymentTermsNote:
+      'By tapping "Send", you agree to the transfer terms and conditions.',
   },
   bg: {
     heroTitle: "আন্তর্জাতিক\nট্রান্সফার",
@@ -78,7 +180,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     sendCurrency: "পাঠানোর মুদ্রা",
     swapCurrencies: "মুদ্রা বদলান",
     startTransfer: "ট্রান্সফার শুরু করুন",
-    license: "MultitransferBD — লাইসেন্সপ্রাপ্ত পেমেন্ট সেবা",
+    license: "Multitransfer — লাইসেন্সপ্রাপ্ত পেমেন্ট সেবা",
     countryModalTitle: "ট্রান্সফারের দেশ",
     methodModalTitle: "ট্রান্সফার পদ্ধতি",
     chooseDestination: "কোথায় পাঠাবেন নির্বাচন করুন",
@@ -105,7 +207,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     back: "পেছনে",
     confirmTransfer: "ট্রান্সফার নিশ্চিত করুন",
     readyTitle: "ট্রান্সফার আবেদন প্রস্তুত",
-    readyText: "ডেমো ট্রান্সফার তৈরি হয়েছে। বাস্তব সেবায় এখানে পেমেন্ট এবং এসএমএস নিশ্চিতকরণ হবে।",
+    readyText:
+      "ডেমো ট্রান্সফার তৈরি হয়েছে। বাস্তব সেবায় এখানে পেমেন্ট এবং এসএমএস নিশ্চিতকরণ হবে।",
     done: "সম্পন্ন",
     recipientCard: "প্রাপকের কার্ড / অ্যাকাউন্ট",
     senderPhone: "প্রেরকের ফোন",
@@ -115,7 +218,76 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     senderFirstName: "প্রেরকের নাম",
     confirmData: "আমি প্রাপক ও প্রেরকের তথ্য সঠিক নিশ্চিত করছি",
     formError: "ধাপ ২-এর সব বাধ্যতামূলক ঘর পূরণ করুন এবং তথ্য নিশ্চিত করুন।",
-    helperInfo: "প্রাপকের ব্যাংক যাচাই করুন, এতে সঠিক ট্রান্সফার পদ্ধতি বেছে নিতে সুবিধা হবে।"
+    helperInfo:
+      "প্রাপকের ব্যাংক যাচাই করুন, এতে সঠিক ট্রান্সফার পদ্ধতি বেছে নিতে সুবিধা হবে।",
+    transferToCountry: "{country} এ ট্রান্সফার",
+    dataEntry: "তথ্য পূরণ",
+    backHome: "ফিরে যান",
+    receiver: "গ্রাহক",
+    sender: "প্রেরক",
+    firstName: "নাম",
+    lastName: "পদবি",
+    middleName: "মধ্য নাম",
+    phoneNumber: "ফোন নম্বর",
+    russianPassport: "রাশিয়ান পাসপোর্ট",
+    nationalPassport: "জাতীয় পাসপোর্ট",
+    countryOfDocumentIssue: "ডকুমেন্ট ইস্যুর দেশ",
+    passportSeries: "পাসপোর্ট সিরিজ",
+    passportNumber: "পাসপোর্ট নম্বর",
+    divisionCode: "ডিভিশন কোড",
+    issuingAuthority: "ইস্যুকারী কর্তৃপক্ষ",
+    dateOfIssue: "ইস্যুর তারিখ",
+    countryOfResidence: "বাসস্থানের দেশ",
+    citizenship: "নাগরিকত্ব",
+    countryOfBirth: "জন্মের দেশ",
+    placeOfBirth: "জন্মস্থান",
+    countryOfRegistration: "নিবন্ধনের দেশ",
+    placeOfRegistration: "নিবন্ধনের স্থান",
+    gender: "লিঙ্গ",
+    male: "পুরুষ",
+    female: "নারী",
+    dateOfBirth: "জন্ম তারিখ",
+    enterCountryOfResidence: "আপনার বাসস্থানের দেশ লিখুন",
+    enterCitizenship: "আপনার নাগরিকত্ব লিখুন",
+    enterCountryOfBirth: "আপনার জন্মের দেশ লিখুন",
+    enterPlaceOfBirth: "ডকুমেন্ট অনুযায়ী জন্মস্থান লিখুন",
+    enterCountryOfRegistration: "আপনার নিবন্ধনের দেশ লিখুন",
+    enterPlaceOfRegistration: "ডকুমেন্ট অনুযায়ী নিবন্ধনের স্থান লিখুন",
+    enterIssuingAuthority: "পাসপোর্টে যেমন আছে ঠিক তেমন লিখুন",
+    enterPhoneWithCode: "দেশের কোডসহ ফোন নম্বর লিখুন",
+    personalDataConsent:
+      "আমি সম্মতির শর্ত অনুযায়ী ব্যক্তিগত তথ্য প্রক্রিয়াকরণে সম্মতি দিচ্ছি এবং প্রদত্ত তথ্যের সঠিকতা ধারা 1.5 ও ধারা 5.2.1 অনুযায়ী নিশ্চিত করছি।",
+    consent: "সম্মতি",
+    clause15: "ধারা 1.5",
+    clause521: "ধারা 5.2.1",
+    terms: "শর্তাবলি",
+    continue: "চালিয়ে যান",
+    continueToConfirm: "নিশ্চিতকরণে যান",
+    confirmDetails: "বিস্তারিত নিশ্চিত করুন",
+    paymentDetails: "পেমেন্ট বিবরণ",
+    stepOf: "ধাপ {current} / {total}",
+    confirmNote:
+      "এগিয়ে গেলে আপনি নিশ্চিত করছেন যে প্রেরক ও প্রাপকের তথ্য সঠিক এবং পেমেন্ট ধাপের জন্য প্রস্তুত।",
+    editData: "তথ্য সম্পাদনা",
+    amountToReceive: "পাওয়ার পরিমাণ",
+    fxRate: "বিনিময় হার",
+    totalToTransfer: "মোট ট্রান্সফার",
+    transferMethodLabel: "ট্রান্সফার পদ্ধতি",
+    recipientFirstNameLabel: "প্রাপকের নাম",
+    recipientLastNameLabel: "প্রাপকের পদবি",
+    recipientPhoneLabel: "প্রাপকের ফোন",
+    senderFirstNameLabel: "প্রেরকের নাম",
+    senderLastNameLabel: "প্রেরকের পদবি",
+    senderPhoneLabel: "প্রেরকের ফোন",
+    documentType: "ডকুমেন্টের ধরন",
+    documentCountry: "ডকুমেন্টের দেশ",
+    scanSbpQr: "পেমেন্ট সম্পন্ন করতে SBP QR স্ক্যান করুন",
+    paymentProtected: "পেমেন্ট SSL প্রোটোকল দ্বারা সুরক্ষিত",
+    byCard: "কার্ড দিয়ে",
+    cardNumber: "কার্ড নম্বর",
+    send: "পাঠান",
+    paymentTermsNote:
+      '"পাঠান" চাপলে আপনি ট্রান্সফারের শর্তাবলিতে সম্মতি দিচ্ছেন।',
   },
   in: {
     heroTitle: "अंतरराष्ट्रीय\nट्रांसफर",
@@ -130,7 +302,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     sendCurrency: "भेजने की मुद्रा",
     swapCurrencies: "मुद्रा बदलें",
     startTransfer: "ट्रांसफर शुरू करें",
-    license: "MultitransferBD — लाइसेंस प्राप्त भुगतान सेवा",
+    license: "Multitransfer — लाइसेंस प्राप्त भुगतान सेवा",
     countryModalTitle: "ट्रांसफर देश",
     methodModalTitle: "ट्रांसफर विधि",
     chooseDestination: "कहां भेजना है चुनें",
@@ -157,7 +329,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     back: "वापस",
     confirmTransfer: "ट्रांसफर पुष्टि करें",
     readyTitle: "ट्रांसफर अनुरोध तैयार है",
-    readyText: "डेमो ट्रांसफर बन गया है। वास्तविक सेवा में यहां भुगतान और SMS पुष्टि होगी।",
+    readyText:
+      "डेमो ट्रांसफर बन गया है। वास्तविक सेवा में यहां भुगतान और SMS पुष्टि होगी।",
     done: "पूरा",
     recipientCard: "प्राप्तकर्ता कार्ड / खाता",
     senderPhone: "भेजने वाले का फोन",
@@ -165,9 +338,79 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     recipientFirstName: "प्राप्तकर्ता नाम",
     senderLastName: "भेजने वाले का उपनाम",
     senderFirstName: "भेजने वाले का नाम",
-    confirmData: "मैं प्राप्तकर्ता और भेजने वाले की जानकारी सही होने की पुष्टि करता हूं",
+    confirmData:
+      "मैं प्राप्तकर्ता और भेजने वाले की जानकारी सही होने की पुष्टि करता हूं",
     formError: "स्टेप 2 के सभी जरूरी फ़ील्ड भरें और जानकारी पुष्टि करें।",
-    helperInfo: "प्राप्तकर्ता बैंक जांचें, इससे सही ट्रांसफर विधि चुनने में मदद मिलेगी।"
+    helperInfo:
+      "प्राप्तकर्ता बैंक जांचें, इससे सही ट्रांसफर विधि चुनने में मदद मिलेगी।",
+    transferToCountry: "{country} को ट्रांसफर",
+    dataEntry: "डेटा प्रविष्टि",
+    backHome: "वापस",
+    receiver: "प्राप्तकर्ता",
+    sender: "प्रेषक",
+    firstName: "पहला नाम",
+    lastName: "अंतिम नाम",
+    middleName: "मध्य नाम",
+    phoneNumber: "फोन नंबर",
+    russianPassport: "रूसी पासपोर्ट",
+    nationalPassport: "राष्ट्रीय पासपोर्ट",
+    countryOfDocumentIssue: "दस्तावेज जारी करने वाला देश",
+    passportSeries: "पासपोर्ट श्रृंखला",
+    passportNumber: "पासपोर्ट नंबर",
+    divisionCode: "डिवीजन कोड",
+    issuingAuthority: "जारी करने वाला प्राधिकरण",
+    dateOfIssue: "जारी करने की तिथि",
+    countryOfResidence: "निवास का देश",
+    citizenship: "नागरिकता",
+    countryOfBirth: "जन्म का देश",
+    placeOfBirth: "जन्म स्थान",
+    countryOfRegistration: "पंजीकरण का देश",
+    placeOfRegistration: "पंजीकरण का स्थान",
+    gender: "लिंग",
+    male: "पुरुष",
+    female: "महिला",
+    dateOfBirth: "जन्म तिथि",
+    enterCountryOfResidence: "अपने निवास का देश दर्ज करें",
+    enterCitizenship: "अपनी नागरिकता दर्ज करें",
+    enterCountryOfBirth: "अपने जन्म का देश दर्ज करें",
+    enterPlaceOfBirth: "दस्तावेज़ के अनुसार अपना जन्म स्थान दर्ज करें",
+    enterCountryOfRegistration: "अपने पंजीकरण का देश दर्ज करें",
+    enterPlaceOfRegistration:
+      "दस्तावेज़ के अनुसार अपना पंजीकरण स्थान दर्ज करें",
+    enterIssuingAuthority: "पासपोर्ट में जैसा है वैसा ही दर्ज करें",
+    enterPhoneWithCode: "देश कोड सहित फोन नंबर दर्ज करें",
+    personalDataConsent:
+      "मैं सहमति के अनुसार व्यक्तिगत डेटा के प्रसंस्करण से सहमत हूं और नियमों की धारा 1.5 और धारा 5.2.1 के अनुसार प्रदान किए गए डेटा की सटीकता की पुष्टि करता हूं।",
+    consent: "सहमति",
+    clause15: "धारा 1.5",
+    clause521: "धारा 5.2.1",
+    terms: "नियम",
+    continue: "जारी रखें",
+    continueToConfirm: "पुष्टि पर जाएं",
+    confirmDetails: "विवरण की पुष्टि करें",
+    paymentDetails: "भुगतान विवरण",
+    stepOf: "स्टेप {current} / {total}",
+    confirmNote:
+      "आगे बढ़कर आप पुष्टि करते हैं कि प्रेषक और प्राप्तकर्ता का डेटा सही है और भुगतान चरण के लिए तैयार है।",
+    editData: "डेटा संपादित करें",
+    amountToReceive: "प्राप्त राशि",
+    fxRate: "एफएक्स रेट",
+    totalToTransfer: "कुल ट्रांसफर",
+    transferMethodLabel: "ट्रांसफर विधि",
+    recipientFirstNameLabel: "प्राप्तकर्ता का नाम",
+    recipientLastNameLabel: "प्राप्तकर्ता का उपनाम",
+    recipientPhoneLabel: "प्राप्तकर्ता का फोन",
+    senderFirstNameLabel: "प्रेषक का नाम",
+    senderLastNameLabel: "प्रेषक का उपनाम",
+    senderPhoneLabel: "प्रेषक का फोन",
+    documentType: "दस्तावेज़ का प्रकार",
+    documentCountry: "दस्तावेज़ का देश",
+    scanSbpQr: "भुगतान पूरा करने के लिए SBP QR स्कैन करें",
+    paymentProtected: "भुगतान SSL प्रोटोकॉल द्वारा सुरक्षित है",
+    byCard: "कार्ड द्वारा",
+    cardNumber: "कार्ड नंबर",
+    send: "भेजें",
+    paymentTermsNote: '"भेजें" दबाकर आप ट्रांसफर की शर्तों से सहमत होते हैं।',
   },
   sl: {
     heroTitle: "ජාත්‍යන්තර\nමුදල් යැවීම",
@@ -182,7 +425,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     sendCurrency: "යවන මුදල් ඒකකය",
     swapCurrencies: "මුදල් ඒකක මාරු කරන්න",
     startTransfer: "යැවීම ආරම්භ කරන්න",
-    license: "MultitransferBD — බලපත්‍රලාභී ගෙවීම් සේවාව",
+    license: "Multitransfer — බලපත්‍රලාභී ගෙවීම් සේවාව",
     countryModalTitle: "යවන රට",
     methodModalTitle: "යැවීමේ ක්‍රමය",
     chooseDestination: "යැවිය යුතු ස්ථානය තෝරන්න",
@@ -209,7 +452,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     back: "ආපසු",
     confirmTransfer: "යැවීම තහවුරු කරන්න",
     readyTitle: "යැවීමේ ඉල්ලීම සූදානම්",
-    readyText: "ඩෙමෝ යැවීම සකස් කර ඇත. සැබෑ සේවාවේ මෙහිදී ගෙවීම සහ SMS තහවුරු කිරීම සිදු වේ.",
+    readyText:
+      "ඩෙමෝ යැවීම සකස් කර ඇත. සැබෑ සේවාවේ මෙහිදී ගෙවීම සහ SMS තහවුරු කිරීම සිදු වේ.",
     done: "හරි",
     recipientCard: "ලබන්නාගේ කාඩ් / ගිණුම",
     senderPhone: "යවන්නාගේ දුරකථනය",
@@ -219,8 +463,77 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     senderFirstName: "යවන්නාගේ නම",
     confirmData: "ලබන්නා සහ යවන්නාගේ තොරතුරු නිවැරදි බව තහවුරු කරමි",
     formError: "පියවර 2 හි සියලුම අවශ්‍ය ක්ෂේත්‍ර පුරවා තොරතුරු තහවුරු කරන්න.",
-    helperInfo: "ලබන්නාගේ බැංකුව පරීක්ෂා කරන්න, එය නිවැරදි ක්‍රමය තෝරාගැනීමට උපකාරී වේ."
-  }
+    helperInfo:
+      "ලබන්නාගේ බැංකුව පරීක්ෂා කරන්න, එය නිවැරදි ක්‍රමය තෝරාගැනීමට උපකාරී වේ.",
+    transferToCountry: "{country} වෙත මාරු කිරීම",
+    dataEntry: "දත්ත ඇතුළත් කිරීම",
+    backHome: "ආපසු",
+    receiver: "ලබන්නා",
+    sender: "යවන්නා",
+    firstName: "මුල් නම",
+    lastName: "අවසන් නම",
+    middleName: "මැද නම",
+    phoneNumber: "දුරකථන අංකය",
+    russianPassport: "රුසියානු ගමන් බලපත්‍රය",
+    nationalPassport: "ජාතික ගමන් බලපත්‍රය",
+    countryOfDocumentIssue: "ලේඛනය නිකුත් කළ රට",
+    passportSeries: "ගමන් බලපත්‍ර මාලාව",
+    passportNumber: "ගමන් බලපත්‍ර අංකය",
+    divisionCode: "කොට්ඨාස කේතය",
+    issuingAuthority: "නිකුත් කළ අධිකාරිය",
+    dateOfIssue: "නිකුත් කළ දිනය",
+    countryOfResidence: "පදිංචි රට",
+    citizenship: "පුරවැසිභාවය",
+    countryOfBirth: "උපන් රට",
+    placeOfBirth: "උපන් ස්ථානය",
+    countryOfRegistration: "ලියාපදිංචි රට",
+    placeOfRegistration: "ලියාපදිංචි ස්ථානය",
+    gender: "ස්ත්‍රී පුරුෂ භාවය",
+    male: "පුරුෂ",
+    female: "ස්ත්‍රී",
+    dateOfBirth: "උපන් දිනය",
+    enterCountryOfResidence: "ඔබගේ පදිංචි රට ඇතුළත් කරන්න",
+    enterCitizenship: "ඔබගේ පුරවැසිභාවය ඇතුළත් කරන්න",
+    enterCountryOfBirth: "ඔබගේ උපන් රට ඇතුළත් කරන්න",
+    enterPlaceOfBirth: "ලේඛනයේ ඇති පරිදි උපන් ස්ථානය ඇතුළත් කරන්න",
+    enterCountryOfRegistration: "ඔබගේ ලියාපදිංචි රට ඇතුළත් කරන්න",
+    enterPlaceOfRegistration: "ලේඛනයේ ඇති පරිදි ලියාපදිංචි ස්ථානය ඇතුළත් කරන්න",
+    enterIssuingAuthority: "ගමන් බලපත්‍රයේ ඇති පරිදි ඇතුළත් කරන්න",
+    enterPhoneWithCode: "රටේ කේතය සමඟ දුරකථන අංකය ඇතුළත් කරන්න",
+    personalDataConsent:
+      "මම අනුමැතියට අනුකූලව පුද්ගලික දත්ත සැකසීමට එකඟ වන අතර, 1.5 වගන්තිය සහ 5.2.1 වගන්තියට අනුකූලව සපයන ලද දත්තවල නිවැරදිභාවය තහවුරු කරමි.",
+    consent: "අනුමැතිය",
+    clause15: "1.5 වගන්තිය",
+    clause521: "5.2.1 වගන්තිය",
+    terms: "කොන්දේසි",
+    continue: "ඉදිරියට යන්න",
+    continueToConfirm: "තහවුරු කිරීමට යන්න",
+    confirmDetails: "විස්තර තහවුරු කරන්න",
+    paymentDetails: "ගෙවීම් විස්තර",
+    stepOf: "පියවර {current} / {total}",
+    confirmNote:
+      "ඉදිරියට යාමෙන් ඔබ යවන්නා සහ ලබන්නාගේ දත්ත නිවැරදි බවත් ගෙවීම් අදියර සඳහා සූදානම් බවත් තහවුරු කරයි.",
+    editData: "දත්ත සංස්කරණය",
+    amountToReceive: "ලැබෙන මුදල",
+    fxRate: "FX අනුපාතය",
+    totalToTransfer: "මුළු මාරු කිරීම",
+    transferMethodLabel: "මාරු කිරීමේ ක්‍රමය",
+    recipientFirstNameLabel: "ලබන්නාගේ නම",
+    recipientLastNameLabel: "ලබන්නාගේ වාසගම",
+    recipientPhoneLabel: "ලබන්නාගේ දුරකථනය",
+    senderFirstNameLabel: "යවන්නාගේ නම",
+    senderLastNameLabel: "යවන්නාගේ වාසගම",
+    senderPhoneLabel: "යවන්නාගේ දුරකථනය",
+    documentType: "ලේඛන වර්ගය",
+    documentCountry: "ලේඛන රට",
+    scanSbpQr: "ගෙවීම සම්පූර්ණ කිරීමට SBP QR ස්කෑන් කරන්න",
+    paymentProtected: "ගෙවීම SSL ප්‍රොටෝකෝලයෙන් ආරක්ෂිතයි",
+    byCard: "කාඩ්පතින්",
+    cardNumber: "කාඩ් අංකය",
+    send: "යවන්න",
+    paymentTermsNote:
+      '"යවන්න" තට්ටු කිරීමෙන් ඔබ මාරු කිරීමේ කොන්දේසි වලට එකඟ වේ.',
+  },
 };
 
 type LanguageContextValue = {
@@ -234,14 +547,18 @@ const validLanguages = languageOptions.map((item) => item.code);
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 function languageFromPath(pathname: string): LanguageCode {
-  const segment = pathname.split("/").filter(Boolean)[0] as LanguageCode | undefined;
+  const segment = pathname.split("/").filter(Boolean)[0] as
+    | LanguageCode
+    | undefined;
   return segment && validLanguages.includes(segment) ? segment : "en";
 }
 
 export function LanguageProvider({ children }: PropsWithChildren) {
   const router = useRouter();
   const pathname = usePathname();
-  const [language, setLanguageState] = useState<LanguageCode>(() => languageFromPath(pathname));
+  const [language, setLanguageState] = useState<LanguageCode>(() =>
+    languageFromPath(pathname),
+  );
 
   useEffect(() => {
     setLanguageState(languageFromPath(pathname));
@@ -249,24 +566,40 @@ export function LanguageProvider({ children }: PropsWithChildren) {
 
   const setLanguage = (nextLanguage: LanguageCode) => {
     setLanguageState(nextLanguage);
-    router.push(`/${nextLanguage}`);
+    const segments = pathname.split("/").filter(Boolean);
+
+    if (segments.length === 0) {
+      router.push(`/${nextLanguage}`);
+      return;
+    }
+
+    segments[0] = nextLanguage;
+    router.push(`/${segments.join("/")}`);
   };
 
   const value = useMemo(
     () => ({
       language,
-      option: languageOptions.find((item) => item.code === language) ?? languageOptions[0],
+      option:
+        languageOptions.find((item) => item.code === language) ??
+        languageOptions[0],
       setLanguage,
-      t: (key: string) => translations[language][key] ?? translations.en[key] ?? key
+      t: (key: string) =>
+        translations[language][key] ?? translations.en[key] ?? key,
     }),
-    [language]
+    [language],
   );
 
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (!context) throw new Error("useLanguage must be used inside LanguageProvider");
+  if (!context)
+    throw new Error("useLanguage must be used inside LanguageProvider");
   return context;
 }

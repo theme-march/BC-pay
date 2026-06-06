@@ -1,4 +1,4 @@
-// File: C:\Users\Akash\Desktop\multitransferbd\src\app\api\rates\route.ts
+// File: /Users/akash/Desktop/BC-pay/src/app/api/rates/route.ts
 import * as entry from '../../../../../src/app/api/rates/route.js'
 import type { NextRequest } from 'next/server.js'
 

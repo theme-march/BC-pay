@@ -1,4 +1,4 @@
-// File: C:\Users\Akash\Desktop\multitransferbd\src\app\layout.tsx
+// File: /Users/akash/Desktop/BC-pay/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

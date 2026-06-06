@@ -1,0 +1,45 @@
+@media (max-width: 992px) {
+  .hero-copy-col,
+  .hero-panel-col {
+    justify-content: flex-start;
+  }
+
+  
+
+  .hero-subtitle {
+    max-width: 384px;
+  }
+
+  .hero-spot,
+  .hero-orbit {
+    opacity: 0.28;
+  }
+
+  .transfer-panel {
+    margin: 0;
+    width: 100%;
+  }
+
+  .transfer-route-grid-wide {
+    grid-template-columns: 1fr;
+  }
+
+  .transfer-route-right-scroll {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .transfer-panel-actions,
+  .payment-card-grid {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .payment-inline-field-full {
+    grid-column: auto;
+  }
+
+  .amount-card-grid {
+    grid-template-columns: 1fr;
+  }
+}

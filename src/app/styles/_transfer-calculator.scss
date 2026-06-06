@@ -1,0 +1,349 @@
+.transfer-panel {
+  background: rgba(18,19,22,.95);
+  border-radius: 48px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,.05);
+  box-shadow: 0 32px 90px rgba(0,0,0,.4);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  @media (max-width: 992px) {
+    padding: 20px;
+    border-radius: 30px;
+  }
+}
+
+.transfer-group + .transfer-group {
+  margin-top: 18px;
+}
+
+.transfer-row + .transfer-group {
+  margin-top: 18px;
+}
+
+.transfer-method-group {
+  margin-bottom: 18px;
+}
+
+.pick-row {
+  width: 100%;
+  min-height: 66px;
+  border-radius: 18px;
+  background: #25262A;
+  color: white;
+  border: none;
+  padding: 16px 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.pick-row:hover {
+  background: #2c2d32;
+}
+
+.pick-row[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pick-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pick-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.transfer-row {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.transfer-top {
+  width: 100%;
+}
+
+.currency-pill-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.currency-pill {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,.04);
+  color: #f5f7fa;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.currency-pill:hover,
+.currency-pill.active {
+  background: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.input-card {
+  background: #1e2128;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 24px;
+  padding: 19px 20px 21px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 11px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.amount-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.input-card-plain {
+  padding: 15px;
+  justify-content: space-between;
+  border-radius: 22px;
+}
+
+.input-label {
+  font-size: 16px;
+  font-weight: 800;
+  color: #f5f7ff;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  text-transform: none;
+}
+
+.input-value {
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.input-card input.form-control {
+  margin-top: 0;
+  background: rgba(255,255,255,.06);
+  border-radius: 16px;
+  box-shadow: none;
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
+  padding: 12px 12px;
+}
+
+.input-card input.form-control::placeholder {
+  color: rgba(255,255,255,.55);
+}
+
+.input-card input.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(13,110,253,.16);
+  border-color: rgba(13,110,253,.6);
+}
+
+.amount-input-inline,
+.amount-static-value {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.amount-input-inline .form-control {
+  min-height: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+}
+
+.amount-input-inline .form-control:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.input-value-plain,
+.amount-static-value span:first-child {
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1;
+  font-weight: 800;
+  color: #fff;
+}
+
+.amount-currency-tag {
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 700;
+  color: rgba(255,255,255,.96);
+}
+
+.btn-swap {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: #1d2127;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.btn-swap:hover {
+  background: #23272f;
+}
+
+.transfer-section-label {
+  font-size: 16px;
+  font-weight: 800;
+  color: #eef2ff;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  text-transform: uppercase;
+}
+
+.transfer-meta-label {
+  color: rgba(255,255,255,.82);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+.transfer-method-row {
+  padding: 10px 15px 10px 10px;
+  border-radius: 32px;
+  align-items: center;
+  gap: 16px;
+}
+
+.transfer-method-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.7);
+}
+
+.transfer-method-icon svg {
+  font-size: 32px;
+}
+
+.transfer-method-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.transfer-method-title {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 800;
+  color: rgba(255,255,255,.94);
+}
+
+.transfer-method-selected {
+  font-size: 13px;
+  color: rgba(255,255,255,.58);
+  font-weight: 600;
+}
+
+.transfer-method-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: rgba(255,255,255,.68);
+}
+
+.transfer-method-row[disabled] .transfer-method-title,
+.transfer-method-row[disabled] .transfer-method-selected,
+.transfer-method-row[disabled] .transfer-method-icon,
+.transfer-method-row[disabled] .transfer-method-meta {
+  color: rgba(255,255,255,.36);
+}
+
+.select-chip {
+  border-radius: 16px;
+  padding: 7px 14px;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: #2a2b30;
+  color: #c5c7d0;
+  transition: background 0.2s ease;
+}
+
+.select-chip:hover {
+  background: #32343b;
+}
+
+.select-chip.active {
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+.transfer-rate-card,
+.summary-card {
+  background: #1a1b1f;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.summary-label {
+  color: rgba(248,250,252,.82);
+  font-weight: 700;
+  line-height: 1.35;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+.text-helper {
+  color: #f56565;
+  font-size: 14px;
+  margin-top: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-transfer {
+  margin-top: 30px;
+  width: 100%;
+  padding: 18px;
+  border-radius: 28px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.transfer-info {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.transfer-info span {
+  color: #89a8ff;
+  font-size: 15px;
+}
+.bank-transfer-list{
+  max-height: 400px;
+  width: 100%;
+  overflow-y: auto;
+}
