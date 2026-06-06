@@ -1,3 +1,5 @@
 {
+  "/api/rates/route": "app/api/rates/route.js",
+  "/[locale]/page": "app/[locale]/page.js",
   "/[locale]/transfer/[country]/page": "app/[locale]/transfer/[country]/page.js"
 }

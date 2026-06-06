@@ -542,16 +542,14 @@ textarea {
 }
 
 .transfer-route-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 1.1fr) minmax(320px, 0.9fr);
-  grid-gap: 28px;
+  display: flex;
   gap: 28px;
-  max-width: 1390px;
-  margin: 0 auto;
+  max-width: 100%;
 }
-
-.transfer-route-grid-wide {
-  grid-template-columns: minmax(360px, 0.95fr) minmax(420px, 1.05fr);
+@media (max-width: 992px) {
+  .transfer-route-grid {
+    flex-direction: column;
+  }
 }
 
 .transfer-route-left,
@@ -561,7 +559,6 @@ textarea {
 }
 
 .transfer-route-left {
-  min-height: 780px;
   position: relative;
   color: white;
   display: flex;
@@ -646,18 +643,6 @@ textarea {
   background: #0d6efd;
 }
 
-.transfer-route-hero-globe {
-  height: 360px;
-  border-radius: 28px;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.16), transparent 48%), rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.3);
-}
-@media (max-width: 992px) {
-  .transfer-route-hero-globe {
-    display: none;
-  }
-}
-
 .transfer-route-hero-globe-accent {
   background: radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.26), transparent 18%), radial-gradient(circle at 72% 35%, rgba(13, 110, 253, 0.34), transparent 24%), radial-gradient(circle at 50% 75%, rgba(255, 255, 255, 0.12), transparent 28%), rgba(255, 255, 255, 0.04);
 }
@@ -686,6 +671,8 @@ textarea {
 .transfer-route-right-scroll {
   max-height: calc(100vh - 112px);
   overflow-y: auto;
+  max-width: 750px;
+  width: 100%;
 }
 
 .transfer-route-side-actions {
@@ -1234,9 +1221,6 @@ textarea {
   .transfer-panel {
     margin: 0;
     width: 100%;
-  }
-  .transfer-route-grid-wide {
-    grid-template-columns: 1fr;
   }
   .transfer-route-right-scroll {
     max-height: none;
